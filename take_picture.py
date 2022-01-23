@@ -8,6 +8,7 @@ Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
 
 import cv2
 import os
+import time
 
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) # set video width
@@ -24,7 +25,9 @@ count = 0
 
 while(True):
 
+    time.sleep(1)
     ret, img = cam.read()
+    time.sleep(1)
     #img = cv2.flip(img, -1) # flip video image vertically
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray, 1.3, 5)
