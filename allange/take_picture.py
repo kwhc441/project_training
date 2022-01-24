@@ -12,8 +12,10 @@ import time
 import datetime
 
 def chk_mkdir(cusnum):
-    if not os.path.exists(cusnum):
-        os.mkdir(cusnum)
+    face_id = str(cusnum)
+    if not os.path.exists(face_id):
+        os.mkdir(face_id)
+        os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}\\{face_id}")
     else:
         cusnum +=1
         chk_mkdir(cusnum)
@@ -29,19 +31,18 @@ face_detector = cv2.CascadeClassifier('C:\\Users\\kwhc4\\Desktop\\forclass\\proj
 
 # For each person, enter one numeric face id
 cusnum=1
-face_id = cusnum
 
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 # Initialize individual sampling face count
 count = 0
 
+os.chdir("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets")
+if not os.path.exists(opening_date):
+    os.mkdir(opening_date)
+os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}")
+chk_mkdir(cusnum)
 while(True):
-
-    os.chdir("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets")
-    if not os.path.exists(opening_date):
-        os.mkdir(opening_date)
-    os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}")
-    chk_mkdir(cusnum)
+    
     ret, img = cam.read()
     time.sleep(1)
     #img = cv2.flip(img, -1) # flip video image vertically
