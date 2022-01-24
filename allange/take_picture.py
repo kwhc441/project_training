@@ -9,16 +9,27 @@ Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
 import cv2
 import os
 import time
+import datetime
+
+def chk_mkdir(cusnum):
+    if not os.path.exists(cusnum):
+        os.mkdir(cusnum)
+    else:
+        cusnum +=1
+        chk_mkdir(cusnum)
 
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
+opening_date=datetime.date.today()
 
 face_detector = cv2.CascadeClassifier('C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml')#xmlファイルの場所をフルパスで指定
 
 
+
 # For each person, enter one numeric face id
-face_id = input('\n enter user id end press <return> ==>  ')
+cusnum=1
+face_id = cusnum
 
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 # Initialize individual sampling face count
@@ -26,12 +37,17 @@ count = 0
 
 while(True):
 
-    time.sleep(1)
+    os.chdir("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets")
+    if not os.path.exists(opening_date):
+        os.mkdir(opening_date)
+    os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}")
+    chk_mkdir(cusnum)
     ret, img = cam.read()
     time.sleep(1)
     #img = cv2.flip(img, -1) # flip video image vertically
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray, 1.3, 5)#エラーの原因？
+    
 
     for (x,y,w,h) in faces:
 
@@ -39,7 +55,7 @@ while(True):
         count += 1
 
         # Save the captured image into the datasets folder
-        cv2.imwrite("./datasets" + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
+        cv2.imwrite(str(count) + ".jpg", gray[y:y+h,x:x+w])
 
         cv2.imshow('image', img)
 
