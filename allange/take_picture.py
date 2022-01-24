@@ -21,7 +21,7 @@ def chk_mkdir(cusnum):
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
-opening_date=datetime.date.today()
+opening_date = datetime.date.today().strftime('%y%m%d')
 
 face_detector = cv2.CascadeClassifier('C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml')#xmlファイルの場所をフルパスで指定
 
