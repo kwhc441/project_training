@@ -15,7 +15,7 @@ def chk_mkdir(cusnum):
     face_id = str(cusnum)
     if not os.path.exists(face_id):
         os.mkdir(face_id)
-        os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}\\{face_id}")
+        os.chdir(f"allange\\datasets\\{opening_date}\\{face_id}")
     else:
         cusnum +=1
         chk_mkdir(cusnum)
@@ -25,7 +25,7 @@ cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
 opening_date = datetime.date.today().strftime('%y%m%d')
 
-face_detector = cv2.CascadeClassifier('C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml')#xmlファイルの場所をフルパスで指定
+face_detector = cv2.CascadeClassifier('allange\\haarcascade_frontalface_default.xml')  # xmlファイルの場所をフルパスで指定
 
 
 
@@ -36,10 +36,10 @@ print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 # Initialize individual sampling face count
 count = 0
 
-os.chdir("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets")
+os.chdir("allange\\datasets")
 if not os.path.exists(opening_date):
     os.mkdir(opening_date)
-os.chdir(f"C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\datasets\\{opening_date}")
+os.chdir(f"{opening_date}")
 chk_mkdir(cusnum)
 while(True):
     
