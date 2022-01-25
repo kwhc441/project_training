@@ -17,7 +17,7 @@ opening_date = datetime.date.today().strftime('%y%m%d')
 
 # Path for face image database
 # 日付ごと、対象ファイルごとに変えられるように工夫が必要
-path = f'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\{opening_date}'
+path = f'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\{opening_date}\\'
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml");
@@ -26,7 +26,7 @@ detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\
 def getImagesAndLabels(path):
 
     imagePaths = [os.path.join(path,f) for f in os.listdir(path)] 
-    print(imagePaths)    
+        
     faceSamples=[]
     ids = []
 
@@ -45,10 +45,7 @@ def getImagesAndLabels(path):
     return faceSamples,ids
 
 
-imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
-print(imagePaths)
 
-""""
 print ("\n [INFO] Training faces. It will take a few seconds. Wait ...")
 faces,ids = getImagesAndLabels(path)
 recognizer.train(faces, np.array(ids))
@@ -59,4 +56,3 @@ recognizer.write('C:\\Users\\kwhc4\\Desktop\\forclass\\project\\FacialRecognitio
 
 # Print the numer of faces trained and end program
 print("\n [INFO] {0} faces trained. Exiting Program".format(len(np.unique(ids))))
-"""
