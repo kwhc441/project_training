@@ -12,9 +12,12 @@ import cv2
 import numpy as np
 from PIL import Image
 import os
+import datetime
+opening_date = datetime.date.today().strftime('%y%m%d')
 
 # Path for face image database
-path = 'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\220125'#日付ごとに変えられるように工夫が必要
+# 日付ごとに変えられるように工夫が必要
+path = f'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\{opening_date}'
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml");
