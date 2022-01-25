@@ -7,13 +7,14 @@ Based on original code by Anirban Kar: https://github.com/thecodacus/Face-Recogn
 Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18   
 '''
 
+#念のためにファイルフォルダ等のpathは絶対pathで
 import cv2
 import numpy as np
 from PIL import Image
 import os
 
 # Path for face image database
-path = 'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\220125\\1'
+path = 'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\220125'#日付ごとに変えられるように工夫が必要
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml");
@@ -21,7 +22,8 @@ detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\
 # function to get the images and label data
 def getImagesAndLabels(path):
 
-    imagePaths = [os.path.join(path,f) for f in os.listdir(path)]     
+    imagePaths = [os.path.join(path,f) for f in os.listdir(path)] 
+    print(imagePaths)    
     faceSamples=[]
     ids = []
 
@@ -38,6 +40,8 @@ def getImagesAndLabels(path):
             ids.append(id)
 
     return faceSamples,ids
+
+
 
 print ("\n [INFO] Training faces. It will take a few seconds. Wait ...")
 faces,ids = getImagesAndLabels(path)
