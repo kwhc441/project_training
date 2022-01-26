@@ -1,4 +1,3 @@
-
 ''''
 Real Time Face Recogition
 	==> Each face stored on dataset/ dir, should have a unique numeric integer ID as 1, 2, 3, etc                       
