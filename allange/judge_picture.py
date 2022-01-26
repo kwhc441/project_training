@@ -33,13 +33,19 @@ cam.set(4, 480) # set video height
 minW = 0.1*cam.get(3)
 minH = 0.1*cam.get(4)
 
+name = input("customer_name>:")
+purpose = input("customer_purpose>:")
+label = name+"\n"+purpose
+names.append(label)
+
 while True:
-    
+    """
     name = input("customer_name>:")
     purpose = input("customer_purpose>:")
     label = name+"\n"+purpose
     names.append(label)
-    ret, img =cam.read()
+    """
+    ret, img = cam.read()
     #img = cv2.flip(img, -1) # Flip vertically
 
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -54,7 +60,6 @@ while True:
 
     for(x,y,w,h) in faces:
 
-        print(x,y,w,h)
         
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
 
