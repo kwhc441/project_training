@@ -17,16 +17,23 @@ opening_date = datetime.date.today().strftime('%y%m%d')
 
 # Path for face image database
 # 日付ごと、対象ファイルごとに変えられるように工夫が必要
-path = f'allange\\datasets\\{opening_date}'
+cnt=1
+cusname=input(f"cnt={cnt}>:")
+path = f'allange\\datasets\\{opening_date}\\{cusname}'
+cnt+=1
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("allange\\haarcascade_frontalface_default.xml");
-
+imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
+"""
+for imagePath in imagePaths:
+    id = os.path.split(imagePath)[-1].split(".")[0]
+    print(id)
+"""
 # function to get the images and label data
 def getImagesAndLabels(path):
 
     imagePaths = [os.path.join(path,f) for f in os.listdir(path)] 
-        
     faceSamples=[]
     ids = []
 
@@ -35,7 +42,7 @@ def getImagesAndLabels(path):
         PIL_img = Image.open(imagePath).convert('L') # convert it to grayscale
         img_numpy = np.array(PIL_img,'uint8')
 
-        id = int(os.path.split(imagePath)[-1].split(".jpg")[1])
+        id = int(os.path.split(imagePath)[-1].split(".")[0])#数字は最初の要素なので[0]
         faces = detector.detectMultiScale(img_numpy)
 
         for (x,y,w,h) in faces:

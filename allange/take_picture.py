@@ -15,12 +15,14 @@ def chk_mkdir(cusnum):
     face_id = str(cusnum)
     if not os.path.exists(face_id):
         os.mkdir(face_id)
-        os.chdir(f"{face_id}")
+        os.chdir(face_id)
     else:
         cusnum +=1
         chk_mkdir(cusnum)
 
-cam = cv2.VideoCapture(0)
+
+#cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
 opening_date = datetime.date.today().strftime('%y%m%d')
@@ -65,8 +67,14 @@ while(True):
         break
     elif count >= 30: # Take 30 face sample and stop video
          break
-os.getcwd().close()
 # Do a bit of cleanup
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
+"""
+label = input("customer name>: ")
+now_dir=os.getcwd()
+os.chdir("..")
+os.rename(now_dir,label)
+"""
+
