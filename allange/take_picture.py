@@ -15,7 +15,7 @@ def chk_mkdir(cusnum):
     face_id = str(cusnum)
     if not os.path.exists(face_id):
         os.mkdir(face_id)
-        os.chdir(f"allange\\datasets\\{opening_date}\\{face_id}")
+        os.chdir(f"{face_id}")
     else:
         cusnum +=1
         chk_mkdir(cusnum)
