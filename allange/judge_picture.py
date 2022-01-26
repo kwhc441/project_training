@@ -24,8 +24,8 @@ id = 0
 names = ['None']
 
 # Initialize and start realtime video capture
-#cam = cv2.VideoCapture(0)
-cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cam = cv2.VideoCapture(0)
+#cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cam.set(3, 640) # set video widht
 cam.set(4, 480) # set video height
 
@@ -50,12 +50,17 @@ while True:
         minNeighbors = 5,
         minSize = (int(minW), int(minH)),
        )
+    #print(faces)
 
     for(x,y,w,h) in faces:
 
+        print(x,y,w,h)
+        
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
 
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
+        #print(id,confidence)
+        #print(names)
 
         # Check if confidence is less them 100 ==> "0" is perfect match 
         if (confidence < 100):
@@ -78,3 +83,4 @@ while True:
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
+
