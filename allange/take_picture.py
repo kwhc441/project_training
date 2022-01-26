@@ -25,7 +25,7 @@ def chk_mkdir(cusnum):
 cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cam.set(3, 640) # set video width
 cam.set(4, 480) # set video height
-opening_date = datetime.date.today().strftime('%y%m%d')
+
 
 face_detector = cv2.CascadeClassifier('allange\\haarcascade_frontalface_default.xml')  # xmlファイルの場所をフルパスで指定
 
@@ -37,12 +37,15 @@ cusnum=1
 print("\n [INFO] Initializing face capture. Look the camera and wait ...")
 # Initialize individual sampling face count
 count = 0
-
+"""
+opening_date = datetime.date.today().strftime('%y%m%d')
 os.chdir("allange\\datasets")
 if not os.path.exists(opening_date):
     os.mkdir(opening_date)
 os.chdir(f"{opening_date}")
 chk_mkdir(cusnum)
+"""
+os.chdir("allange\\datasets")
 while(True):
     
     ret, img = cam.read()
@@ -50,6 +53,7 @@ while(True):
     #img = cv2.flip(img, -1) # flip video image vertically
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray, 1.3, 5)#エラーの原因？
+    opening_date = datetime.datetime.now().strftime('%y%m%d%H%M')
     
 
     for (x,y,w,h) in faces:
@@ -58,7 +62,8 @@ while(True):
         count += 1
 
         # Save the captured image into the datasets folder
-        cv2.imwrite(str(count) + ".jpg", gray[y:y+h,x:x+w])
+        #cv2.imwrite(str(count) + ".jpg", gray[y:y+h,x:x+w])
+        cv2.imwrite(opening_date+str(00)+str(count) + ".jpg", gray[y:y+h, x:x+w])
 
         cv2.imshow('image', img)
 

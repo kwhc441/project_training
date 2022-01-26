@@ -17,11 +17,13 @@ opening_date = datetime.date.today().strftime('%y%m%d')
 
 # Path for face image database
 # 日付ごと、対象ファイルごとに変えられるように工夫が必要
+"""
 cnt=1
 cusname=input(f"cnt={cnt}>:")
 path = f'allange\\datasets\\{opening_date}\\{cusname}'
 cnt+=1
-
+"""
+path = 'allange\\datasets'
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("allange\\haarcascade_frontalface_default.xml");
 imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
