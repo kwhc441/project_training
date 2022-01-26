@@ -65,7 +65,7 @@ while(True):
         break
     elif count >= 30: # Take 30 face sample and stop video
          break
-
+os.getcwd().close()
 # Do a bit of cleanup
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()

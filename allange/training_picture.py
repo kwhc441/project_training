@@ -17,10 +17,10 @@ opening_date = datetime.date.today().strftime('%y%m%d')
 
 # Path for face image database
 # 日付ごと、対象ファイルごとに変えられるように工夫が必要
-path = f'C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\datasets\\{opening_date}\\'
+path = f'allange\\datasets\\{opening_date}'
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-detector = cv2.CascadeClassifier("C:\\Users\\kwhc4\\Desktop\\forclass\\project\\allange\\haarcascade_frontalface_default.xml");
+detector = cv2.CascadeClassifier("allange\\haarcascade_frontalface_default.xml");
 
 # function to get the images and label data
 def getImagesAndLabels(path):
@@ -52,7 +52,7 @@ recognizer.train(faces, np.array(ids))
 
 # Save the model into trainer/trainer.yml
 # recognizer.save() worked on Mac, but not on Pi
-recognizer.write('C:\\Users\\kwhc4\\Desktop\\forclass\\project\\FacialRecognition\\trainer\\trainer.yml')
+recognizer.write('allange\\trainer\\trainer.yml')
 
 # Print the numer of faces trained and end program
 print("\n [INFO] {0} faces trained. Exiting Program".format(len(np.unique(ids))))
