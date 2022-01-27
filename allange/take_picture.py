@@ -45,7 +45,6 @@ if not os.path.exists(opening_date):
 os.chdir(f"{opening_date}")
 chk_mkdir(cusnum)
 """
-os.chdir("allange\\datasets")
 while(True):
     
     ret, img = cam.read()
@@ -63,7 +62,7 @@ while(True):
 
         # Save the captured image into the datasets folder
         #cv2.imwrite(str(count) + ".jpg", gray[y:y+h,x:x+w])
-        cv2.imwrite(opening_date+str(00)+str(count) + ".jpg", gray[y:y+h, x:x+w])
+        cv2.imwrite("allange\\datasets\\"+opening_date+str(00)+str(count) + ".jpg", gray[y:y+h, x:x+w])
 
         cv2.imshow('image', img)
 

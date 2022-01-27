@@ -13,8 +13,8 @@ import numpy as np
 import os 
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-recognizer.read('trainer/trainer.yml')
-cascadePath = "haarcascade_frontalface_default.xml"
+recognizer.read('FacialRecognition\\trainer\\trainer.yml')
+cascadePath = "FacialRecognition\\haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -23,7 +23,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 
 # names related to ids: example ==> Marcelo: id=1,  etc
-names = ['None', 'Marcelo', 'Paula', 'Ilza', 'Z', 'W'] 
+names = ['None', 'ttt', 'Paula', 'Ilza', 'Z', 'W'] 
 
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
@@ -37,7 +37,7 @@ minH = 0.1*cam.get(4)
 while True:
 
     ret, img =cam.read()
-    img = cv2.flip(img, -1) # Flip vertically
+    #img = cv2.flip(img, -1) # Flip vertically
 
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
