@@ -194,10 +194,10 @@ while True:
                 id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))
             except:
-                id = "unknown"
+                id = label
                 confidence = "  {0}%".format(round(100 - confidence))
         else:
-            id = "unknown"
+            id = label
             confidence = "  {0}%".format(round(100 - confidence))
         
         cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
